@@ -7,7 +7,7 @@ class Survey(
         var text: String
 ) {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null;
 
     @OneToMany(mappedBy = "survey", fetch = FetchType.LAZY)

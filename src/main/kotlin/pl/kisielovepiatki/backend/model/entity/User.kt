@@ -9,6 +9,6 @@ import javax.persistence.Id
 @Entity
 class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null;
 }

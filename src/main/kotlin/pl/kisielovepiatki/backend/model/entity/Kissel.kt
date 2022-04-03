@@ -11,6 +11,6 @@ class Kissel(
         var name: String,
 ) {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null;
 }

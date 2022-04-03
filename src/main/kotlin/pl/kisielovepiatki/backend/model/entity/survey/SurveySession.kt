@@ -8,11 +8,11 @@ class SurveySession (
     var startTime: Instant,
     var endTime: Instant,
     @ManyToOne
-    @Column(name = "survey")
+    @JoinColumn(name = "survey_id")
     var survey: Survey
 ) {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null;
 
     @OneToMany(mappedBy = "session")
