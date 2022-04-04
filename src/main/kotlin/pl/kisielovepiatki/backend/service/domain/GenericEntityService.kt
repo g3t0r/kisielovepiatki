@@ -6,6 +6,9 @@ import pl.kisielovepiatki.backend.model.entity.DatabaseModel
 import kotlin.jvm.Throws
 
 interface GenericEntityService<T: DatabaseModel<ID>, ID: Any> {
+
+    fun findAll(): List<T>
+
     /**
      * Function tries to find entity for given id
      * @param id of type ID
@@ -26,4 +29,7 @@ interface GenericEntityService<T: DatabaseModel<ID>, ID: Any> {
     fun delete(id: ID)
 
     fun delete(entity: T)
+
+    fun save(entity: T)
+    fun saveAll(entities: Iterable<T>)
 }
