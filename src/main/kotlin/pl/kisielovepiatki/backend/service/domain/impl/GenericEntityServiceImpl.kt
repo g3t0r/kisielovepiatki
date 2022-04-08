@@ -1,15 +1,19 @@
 package pl.kisielovepiatki.backend.service.domain.impl
 
 import org.springframework.data.repository.NoRepositoryBean
+import org.springframework.transaction.annotation.Transactional
 import pl.kisielovepiatki.backend.exception.EntityNotFoundException
 import pl.kisielovepiatki.backend.model.entity.DatabaseModel
 import pl.kisielovepiatki.backend.repository.GenericRepository
 import pl.kisielovepiatki.backend.service.domain.GenericEntityService
+import pl.kisielovepiatki.backend.validator.GenericValidator
 
 @NoRepositoryBean
 open class GenericEntityServiceImpl<T : DatabaseModel<ID>, ID : Any>(
-        val genericRepository: GenericRepository<T, ID>
+    private val genericRepository: GenericRepository<T, ID>,
+    private val genericValidator: GenericValidator<T>
 ) : GenericEntityService<T, ID> {
+
     override fun findById(id: ID): T? {
         return genericRepository
                 .findById(id)
@@ -36,10 +40,17 @@ open class GenericEntityServiceImpl<T : DatabaseModel<ID>, ID : Any>(
     }
 
     override fun save(entity: T) {
-        genericRepository.save(entity)
+        genericValidator.ifValid(entity) {genericRepository.save(entity) }
     }
 
+    @Transactional
     override fun saveAll(entities: Iterable<T>) {
-        genericRepository.saveAll(entities)
+        entities.forEach {entity ->
+            genericValidator.ifValid(entity) {genericRepository.save(entity)}
+        }
+    }
+
+    override fun update(entity: T) {
+        genericValidator.ifValid(entity) {genericRepository.save(entity) }
     }
 }
