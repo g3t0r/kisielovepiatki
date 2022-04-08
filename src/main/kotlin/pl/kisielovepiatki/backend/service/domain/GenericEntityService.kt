@@ -32,4 +32,5 @@ interface GenericEntityService<T: DatabaseModel<ID>, ID: Any> {
 
     fun save(entity: T)
     fun saveAll(entities: Iterable<T>)
+    fun update(entity: T)
 }
