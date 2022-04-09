@@ -18,15 +18,15 @@ class ScoreValidatorImpl : ScoreValidator, GenericValidatorImpl<Score>() {
     }
 
     private fun isNameValid(name: String): ValidationResult {
-        if(name.isBlank()) {
-            return ValidationResult(false, BLANK_NAME_NOT_ALLOWED_MESSAGE)
-        }
-
-        if(name.isEmpty()) {
+        if (name.isEmpty()) {
             return ValidationResult(false, EMPTY_NAME_NOT_ALLOWED_MESSAGE)
         }
 
-        if(!Regex("([A-Z a-z])+").matches(name)) {
+        if (name.isBlank()) {
+            return ValidationResult(false, BLANK_NAME_NOT_ALLOWED_MESSAGE)
+        }
+
+        if (!Regex("[A-Za-z]+(\\s[A-Za-z]+)*").matches(name)) {
             return ValidationResult(false, NAME_NOT_MATCHING_REGEX)
         }
 
