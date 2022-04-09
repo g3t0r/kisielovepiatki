@@ -2,6 +2,7 @@ package pl.kisielovepiatki.backend.validator.impl
 
 import org.springframework.stereotype.Component
 import pl.kisielovepiatki.backend.model.entity.survey.Score
+import pl.kisielovepiatki.backend.validator.ScoreValidator
 import pl.kisielovepiatki.backend.validator.ValidationResult
 
 @Component

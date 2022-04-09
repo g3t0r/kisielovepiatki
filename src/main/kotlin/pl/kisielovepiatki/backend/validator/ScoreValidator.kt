@@ -1,7 +1,6 @@
-package pl.kisielovepiatki.backend.validator.impl
+package pl.kisielovepiatki.backend.validator
 
 import pl.kisielovepiatki.backend.model.entity.survey.Score
-import pl.kisielovepiatki.backend.validator.GenericValidator
 
 interface ScoreValidator: GenericValidator<Score> {
 }

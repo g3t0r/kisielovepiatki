@@ -3,6 +3,7 @@ package pl.kisielovepiatki.backend.validator.impl
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import pl.kisielovepiatki.backend.model.entity.survey.Score
+import pl.kisielovepiatki.backend.validator.ScoreValidator
 import pl.kisielovepiatki.backend.validator.ValidationResult
 
 internal class ScoreValidatorImplTest {
