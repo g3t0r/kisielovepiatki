@@ -9,8 +9,8 @@ import javax.persistence.Id
 class Kissel(
         var company: String,
         var name: String,
-) {
+): DatabaseModel<Int> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Int? = null;
+    override var id: Int? = null;
 }
