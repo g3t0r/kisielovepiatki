@@ -10,6 +10,8 @@ import pl.kisielovepiatki.backend.service.domain.KisselService
 import pl.kisielovepiatki.backend.service.domain.UserService
 import pl.kisielovepiatki.backend.service.domain.ScoreService
 import pl.kisielovepiatki.backend.service.domain.SessionService
+import pl.kisielovepiatki.backend.utils.Validation
+import pl.kisielovepiatki.backend.utils.ValidationUtils
 import pl.kisielovepiatki.backend.validator.AnswerValidator
 import pl.kisielovepiatki.backend.validator.ValidationResult
 
@@ -36,14 +38,7 @@ class AnswerValidatorImpl(
             {isSessionForeignKeyValid(obj.session)}
         )
 
-        val iterator = list.listIterator()
-        var result = ValidationResult(true, null)
-
-        while (iterator.hasNext() && result.isValid) {
-           result = iterator.next().invoke(Unit)
-        }
-
-        return result;
+        return ValidationUtils.validateAll(list)
     }
 
     private fun isKisselForeignKeyValid(kissel: Kissel): ValidationResult {
@@ -75,5 +70,3 @@ class AnswerValidatorImpl(
     }
 
 }
-
-typealias Validation = (Unit) -> ValidationResult
